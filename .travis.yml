@@ -1,26 +1,19 @@
 language: python
 
-python:
-    - 3.5
-    - 3.6
-
-env:
-    - TOXENV=py35
-    - TOXENV=py36
-
 install:
-    - pip install '.[dev]'
+    - pip install .
+    - pip install tox
 
 branches:
     only:
         - master
 
 matrix:
-    exclude:
+    include:
         - python: 3.6
-          env: TOXENV=py35
-        - python: 3.5
           env: TOXENV=py36
+        - python: 3.5
+          env: TOXENV=py35
 
 script:
     - tox
