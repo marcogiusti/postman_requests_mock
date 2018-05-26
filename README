@@ -2,6 +2,9 @@
 postman_requests_mock
 =====================
 
+
+|travis|_
+
 A small library to mock requests_ with the help of Postman_.
 
 The use case workflow is to use Postman to test a service making few
@@ -26,6 +29,11 @@ requests' headers. Match against the body is not supported. This
 should not be an issue in the most of cases.
 
 
+
+.. |travis| image:: https://travis-ci.org/marcogiusti/postman_requests_mock.svg?branch=master
+.. _travis: https://travis-ci.org/marcogiusti/postman_requests_mock
+
 .. _requests: http://docs.python-requests.org/en/master/
 .. _Postman: https://www.getpostman.com/
+
 .. vim: ft=rst tw=72
