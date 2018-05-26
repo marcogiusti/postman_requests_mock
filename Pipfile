@@ -4,5 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
+pycodestyle = "*"
+tox = "*"
+pyflakes = "*"
+coverage = "*"
 
 [packages]
+jsonschema = "*"
+requests = "*"
+responses = "*"
