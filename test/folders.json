@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "837441c4-edaa-4a7a-8799-bdc5d40eaf61",
+		"name": "test folder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "folder",
+			"description": "",
+			"item": [
+				{
+					"name": "subfolder",
+					"description": "",
+					"item": [
+						{
+							"name": "test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://httpbin.org/ip",
+									"protocol": "http",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"ip"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "da0301b1-6f10-4a0d-bc8d-f4bf175b239c",
+									"name": "test",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {},
+										"url": {
+											"raw": "http://httpbin.org/ip",
+											"protocol": "http",
+											"host": [
+												"httpbin",
+												"org"
+											],
+											"path": [
+												"ip"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true",
+											"name": "Access-Control-Allow-Credentials",
+											"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*",
+											"name": "Access-Control-Allow-Origin",
+											"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive",
+											"name": "Connection",
+											"description": "Options that are desired for the connection"
+										},
+										{
+											"key": "Content-Length",
+											"value": "27",
+											"name": "Content-Length",
+											"description": "The length of the response body in octets (8-bit bytes)"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "The mime type of this content"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 24 May 2018 20:40:34 GMT",
+											"name": "Date",
+											"description": "The date and time that the message was sent"
+										},
+										{
+											"key": "Server",
+											"value": "gunicorn/19.8.1",
+											"name": "Server",
+											"description": "A name for the server"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 vegur",
+											"name": "Via",
+											"description": "Informs the client of proxies through which the response was sent."
+										}
+									],
+									"cookie": [],
+									"body": "{\"origin\":\"1.1.1.1\"}\n"
+								}
+							]
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}

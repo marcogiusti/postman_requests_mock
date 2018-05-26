@@ -1,0 +1,4 @@
+include Pipfile
+include Pipfile.lock
+include test/*.json
+include tox.ini

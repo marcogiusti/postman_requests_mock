@@ -1,0 +1,31 @@
+=====================
+postman_requests_mock
+=====================
+
+A small library to mock requests_ with the help of Postman_.
+
+The use case workflow is to use Postman to test a service making few
+requests, exporting the collection and using it in some test.
+
+Ex:
+
+.. code:: python
+
+   >>> import requests
+   >>> from postman_requests_mock import (
+   ...     PostmanCollectionV21, requests_mock)
+   >>> collection = PostmanCollectionV21.from_file('test/basic.json')
+   >>> mock = requests_mock(collection)
+   >>> with mock:
+   ...     resp = requests.get('http://httpbin.org/ip')
+   >>> resp.json()
+   {'origin': '1.1.1.1'}
+
+At the moment the library matche only the HTTP method, the URL and the
+requests' headers. Match against the body is not supported. This
+should not be an issue in the most of cases.
+
+
+.. _requests: http://docs.python-requests.org/en/master/
+.. _Postman: https://www.getpostman.com/
+.. vim: ft=rst tw=72

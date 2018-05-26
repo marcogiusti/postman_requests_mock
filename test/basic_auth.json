@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "15620ecd-0eff-4384-b4bc-8b6f6c0da3e4",
+		"name": "auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "basic-auth 200",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "me",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://httpbin.org/basic-auth/me/pwd",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"basic-auth",
+						"me",
+						"pwd"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "32f70e04-54d3-4f01-90ab-058c1a2da605",
+					"name": "basic-auth 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://httpbin.org/basic-auth/me/pwd",
+							"protocol": "http",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"basic-auth",
+								"me",
+								"pwd"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 26 May 2018 06:53:23 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"authenticated\":true,\"user\":\"me\"}\n"
+				}
+			]
+		},
+		{
+			"name": "basic-auth 401",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "wrong-pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "me",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://httpbin.org/basic-auth/me/pwd",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"basic-auth",
+						"me",
+						"pwd"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "5478b8d8-46ae-4c79-83a2-270a16c6e491",
+					"name": "basic-auth 401",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://httpbin.org/basic-auth/me/pwd",
+							"protocol": "http",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"basic-auth",
+								"me",
+								"pwd"
+							]
+						}
+					},
+					"status": "UNAUTHORIZED",
+					"code": 401,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 26 May 2018 06:52:38 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						},
+						{
+							"key": "Www-Authenticate",
+							"value": "Basic realm=\"Fake Realm\"",
+							"name": "Www-Authenticate",
+							"description": "Indicates the authentication scheme that should be used to access the requested entity."
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}

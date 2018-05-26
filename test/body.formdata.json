@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "758468ea-1e6d-4b91-a7e6-5b03fae336a2",
+		"name": "test body",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://httpbin.org/anything",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "value",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://httpbin.org/anything",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"anything"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "fb27268b-accf-43a6-ae72-5f2d3e519795",
+					"name": "http://httpbin.org/anything",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "key",
+									"value": "value",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://httpbin.org/anything",
+							"protocol": "http",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "487",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 24 May 2018 22:15:01 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"args\":{},\"data\":\"\",\"files\":{},\"form\":{\"key\":\"value\"},\"headers\":{\"Accept\":\"*/*\",\"Accept-Encoding\":\"gzip, deflate\",\"Cache-Control\":\"no-cache\",\"Connection\":\"close\",\"Content-Length\":\"163\",\"Content-Type\":\"multipart/form-data; boundary=--------------------------199224674876155639834270\",\"Host\":\"httpbin.org\",\"Postman-Token\":\"2521f6eb-621d-49ca-8ef6-9cf7de101418\",\"User-Agent\":\"PostmanRuntime/7.1.5\"},\"json\":null,\"method\":\"POST\",\"origin\":\"1.1.1.1\",\"url\":\"http://httpbin.org/anything\"}\n"
+				}
+			]
+		}
+	]
+}
