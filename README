@@ -29,10 +29,6 @@ requests' headers. Match against the body is not supported. This
 should not be an issue in most cases.
 
 .. |travis| image:: https://travis-ci.org/marcogiusti/postman_requests_mock.svg?branch=master
-.. _travis: https://travis-ci.org/marcogiusti/postman_requests_mock
-
-.. _requests: http://docs.python-requests.org/en/master/
-.. _Postman: https://www.getpostman.com/
 
 
 Features
@@ -56,7 +52,7 @@ Postman support a lot of features, many of which are not yet supported:
 
 - `Collections v2 and v1 data formats`_ (not supported)
 - `Path variables`_ (not supported)
-- Cookies_ (not tested)
+- Cookies_ (can not be implemented)
 - `Header presets`_ (not tested)
 - `Body`_ (not supported)
 - Authorization_ other than basic auth (not supported)
@@ -75,5 +71,16 @@ Postman support a lot of features, many of which are not yet supported:
 .. _SOAP requests: https://www.getpostman.com/docs/v6/postman/sending_api_requests/making_soap_requests
 .. _Scripts: https://www.getpostman.com/docs/v6/postman/scripts/intro_to_scripts
 .. _Environments: https://www.getpostman.com/docs/v6/postman/environments_and_globals/intro_to_environments_and_globals
+
+Cookies
+-------
+
+A Postman collection has no understanding of request cookies, so it is
+not possible to filter on them. A possible work around is to explicitely
+pass a ``Cookie`` header.
+
+.. _Postman: https://www.getpostman.com/
+.. _travis: https://travis-ci.org/marcogiusti/postman_requests_mock
+.. _requests: http://docs.python-requests.org/en/master/
 
 .. vim: ft=rst tw=72
