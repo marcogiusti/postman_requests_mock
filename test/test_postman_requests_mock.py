@@ -20,9 +20,13 @@ class PostmanCollectionV21(_PostmanCollectionV21):
     with open(fixture('collection.json'), encoding='utf8') as fp:
         _schema = json.load(fp)
 
+    @classmethod
+    def from_fixture(cls, name):
+        return cls.from_file(fixture(name))
+
 
 def build_mock(name):
-    collection = PostmanCollectionV21.from_file(fixture(name))
+    collection = PostmanCollectionV21.from_fixture(name)
     mock = requests_mock(
         collection,
         assert_all_requests_are_fired=False
@@ -171,3 +175,15 @@ class TestResponses(unittest.TestCase):
             data = {'key': 'value'}
             resp = requests.post('http://httpbin.org/anything', data=data)
             self.assertEqual(resp.json()['form'], data)
+
+class TestMiscellanea(unittest.TestCase):
+
+    def test_string_request(self):
+        '''
+        The specifications says that requests could be string.
+        Interpret them as simply GETs with no headers.
+        '''
+
+        with build_mock('string_request.json'):
+            resp = requests.get('http://httpbin.org/ip')
+            self.assertEqual(resp.json(), {'origin': '1.1.1.1'})

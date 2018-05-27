@@ -106,12 +106,36 @@ class ItemV21:
         self._item = item
 
     def request(self):
-        return RequestV21(self._item['request'])
+        request = self._item['request']
+        if isinstance(request, str):
+            return StringRequestV21(request)
+        return RequestV21(request)
 
-    # TODO: omit requests that are strings
     def responses(self):
+        request = self.request()
         for response in self._item.get('response', []):
-            yield ResponseV21(self.request(), response)
+            if not isinstance(response, str):
+                yield ResponseV21(request, response)
+
+
+class StringRequestV21:
+
+    def __init__(self, url):
+        self._url = url
+
+    def method(self):
+        return 'GET'
+
+    def url(self):
+        return urlparse(self._url, scheme='http').geturl()
+
+    def headers(self):
+        return {}
+
+    def auth(self):
+        parsed = urlparse(self._url, scheme='http')
+        if parsed.username is not None and parsed.password is not None:
+            return parsed.username, parsed.password
 
 
 class RequestV21:
@@ -128,9 +152,7 @@ class RequestV21:
             url = url['raw']
         # Postman omits the scheme part if not explicited in the original
         # request
-        if not urlparse(url).scheme:
-            url = 'http://' + url
-        return url
+        return urlparse(url, scheme='http').geturl()
 
     def headers(self):
         return {h['key']: h['value'] for h in self._original['header']}
