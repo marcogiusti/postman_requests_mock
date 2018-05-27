@@ -155,6 +155,70 @@ class TestRequestMatching(unittest.TestCase):
             )
         self.assertEqual(response.status_code, 200)
 
+    def test_params(self):
+        '''
+        The mock recognizes parametrized urls and substitures the
+        parameters with the given values.
+        '''
+
+        with build_mock('param.json'):
+            response = requests.get('http://httpbin.org/anything/test')
+        self.assertEqual(response.status_code, 200)
+
+    def test_invalid_params(self):
+        '''
+        The parameter must match the given value or it will not match.
+        '''
+
+        with build_mock('param.json'):
+            with self.assertRaises(ConnectionError):
+                requests.get('http://httpbin.org/anything/try')
+
+    def test_string_url(self):
+        '''
+        Test the case the request url is a string.
+        '''
+
+        with build_mock('string_url.json'):
+            response = requests.get('http://httpbin.org/ip')
+        self.assertEqual(response.status_code, 200)
+
+    def test_no_scheme(self):
+        '''
+        By default the scheme is http.
+        '''
+
+        with build_mock('no_scheme.json'):
+            response = requests.get('http://httpbin.org/ip')
+        self.assertEqual(response.status_code, 200)
+
+    def test_port(self):
+        '''
+        Test a request to a non standard port.
+        '''
+
+        with build_mock('port.json'):
+            response = requests.get('http://httpbin.org:8080/ip')
+        self.assertEqual(response.status_code, 200)
+
+    def test_no_path(self):
+        '''
+        Test when the path is missing.
+        '''
+
+        with build_mock('no_path.json'):
+            response = requests.get('http://httpbin.org/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_fragment(self):
+        '''
+        Test a request with a fragment.
+        '''
+
+        with build_mock('fragment.json'):
+            response = requests.get('http://httpbin.org/ip#fragment')
+        self.assertEqual(response.status_code, 200)
+
 
 class TestResponses(unittest.TestCase):
 
@@ -175,6 +239,7 @@ class TestResponses(unittest.TestCase):
             data = {'key': 'value'}
             resp = requests.post('http://httpbin.org/anything', data=data)
             self.assertEqual(resp.json()['form'], data)
+
 
 class TestMiscellanea(unittest.TestCase):
 

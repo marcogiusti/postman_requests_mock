@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "661d512e-1ae2-49a5-bf15-e0cf776534da",
+		"name": "Path parameters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://httpbin.org/anything/:value",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://httpbin.org/anything/:value",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"anything",
+						":value"
+					],
+					"variable": [
+						{
+							"key": "value",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "274dc51c-b532-4d8e-aa6f-99f80e377379",
+					"name": "http://httpbin.org/anything/:value",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://httpbin.org/anything/:value",
+							"protocol": "http",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything",
+								":value"
+							],
+							"variable": [
+								{
+									"key": "value",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "358",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 27 May 2018 19:06:28 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"args\":{},\"data\":\"\",\"files\":{},\"form\":{},\"headers\":{\"Accept\":\"*/*\",\"Accept-Encoding\":\"gzip, deflate\",\"Cache-Control\":\"no-cache\",\"Connection\":\"close\",\"Host\":\"httpbin.org\",\"Postman-Token\":\"7100516e-ac1e-4ff9-9750-ef551da648e8\",\"User-Agent\":\"PostmanRuntime/7.1.5\"},\"json\":null,\"method\":\"GET\",\"origin\":\"212.233.63.135\",\"url\":\"http://httpbin.org/anything/test\"}\n"
+				}
+			]
+		}
+	]
+}

@@ -1,7 +1,7 @@
 from collections.abc import MutableMapping
 import io
 import json
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse, urlencode
 
 import jsonschema
 from jsonschema.exceptions import ValidationError
@@ -138,11 +138,37 @@ class RequestV21:
 
     def url(self):
         url = self._original['url']
-        if isinstance(url, dict):
-            url = url['raw']
-        # Postman omits the scheme part if not explicited in the original
-        # request
-        return urlparse(url, scheme='http').geturl()
+        if isinstance(url, str):
+            return urlparse(url, scheme='http').geturl()
+        scheme = url.get('protocol', 'http')
+        netloc = url['host']
+        if not isinstance(url['host'], str):
+            netloc = '.'.join(url['host'])
+        if 'port' in url:
+            netloc += ':' + url['port']
+        variables = {v['key']: v['value'] for v in url.get('variable', [])}
+        # a first empty element assures that the path will start with slash
+        if 'path' in url:
+            path = url['path']
+            if isinstance(path, str):
+                path = filter(None, path.split('/'))
+            parts = ['']
+            for part in path:
+                if part.startswith(':'):
+                    part = variables.get(part[1:], part)
+                parts.append(part)
+            path = '/'.join(parts)
+        else:
+            path = ''
+        params = ''
+        query_p = {
+            p['key']: p['value'] for p in url.get('query', [])
+            if not p.get('disabled', False)
+        }
+        query = urlencode(query_p)
+        fragment = url.get('hash', '')
+        url = urlunparse((scheme, netloc, path, params, query, fragment))
+        return url
 
     def headers(self):
         return {h['key']: h['value'] for h in self._original['header']}
@@ -211,9 +237,6 @@ class PostmanResponseV21(responses.BaseResponse):
             # TODO: what to check?
             if (req_c.headers, req_c.body) != (request.headers, request.body):
                 return False
-        # auth = self._request.get('auth')
-        # if auth:
-        #     import pdb; pdb.set_trace()
         return True
 
 
