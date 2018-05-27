@@ -6,7 +6,6 @@ from urllib.parse import urlparse
 import jsonschema
 from jsonschema.exceptions import ValidationError
 import requests
-# from requests.auth import HTTPDigestAuth
 import responses
 from urllib3.response import HTTPResponse
 
@@ -75,15 +74,6 @@ class PostmanCollectionV21:
         if cls._schema is None:
             cls._schema = requests.get(V21_SCHEMA_URL).json()
         return cls._schema
-
-    def _add_item_group(self, group):
-        # TODO: handle variables
-        for item in group['item']:
-            if 'item' in item:
-                yield from self._add_item_group(item)
-            else:
-                for response in item.get('response', []):
-                    yield PostmanResponseV21(response)
 
     def _iter_items(self, group):
         for item in group['item']:
@@ -165,11 +155,6 @@ class RequestV21:
         if atype == 'basic':
             args = {i['key']: i['value'] for i in auth['basic']}
             return (args['username'], args['password'])
-        # elif atype == 'digest':
-        #     args = {i['key']: i['value'] for i in auth['basic']}
-        #     return (args['username'], args['password'])
-        # if auth is not None:
-        #     return auth[auth['type']]
 
 
 class ResponseV21:
