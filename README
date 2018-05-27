@@ -26,14 +26,54 @@ Ex:
 
 At the moment the library matche only the HTTP method, the URL and the
 requests' headers. Match against the body is not supported. This
-should not be an issue in the most of cases.
-
-
+should not be an issue in most cases.
 
 .. |travis| image:: https://travis-ci.org/marcogiusti/postman_requests_mock.svg?branch=master
 .. _travis: https://travis-ci.org/marcogiusti/postman_requests_mock
 
 .. _requests: http://docs.python-requests.org/en/master/
 .. _Postman: https://www.getpostman.com/
+
+
+Features
+========
+
+- Collections_ (v2.1 data format only)
+- Folders_
+- Examples_ (actually the core feature this library is built on)
+- `Basic auth`_
+
+.. _Collections: https://www.getpostman.com/docs/v6/postman/collections/sharing_collections#sharing-as-a-file
+.. _Folders: https://www.getpostman.com/docs/v6/postman/collections/managing_collections#adding-folders
+.. _Examples: https://www.getpostman.com/docs/v6/postman/collections/examples
+.. _Basic auth: https://www.getpostman.com/docs/v6/postman/sending_api_requests/authorization#basic-auth
+
+
+Unsupported or untested features
+================================
+
+Postman support a lot of features, many of which are not yet supported:
+
+- `Collections v2 and v1 data formats`_ (not supported)
+- `Path variables`_ (not supported)
+- Cookies_ (not tested)
+- `Header presets`_ (not tested)
+- `Body`_ (not supported)
+- Authorization_ other than basic auth (not supported)
+- Certificates_ (not supported)
+- `SOAP requests`_ (not supported)
+- Scripts_ (not supported)
+- Environments_ (not supported)
+
+.. _Collections v2 and v1 data formats: http://blog.getpostman.com/2015/06/05/travelogue-of-postman-collection-format-v2/
+.. _Path variables: https://www.getpostman.com/docs/v6/postman/sending_api_requests/requests#url
+.. _Cookies: https://www.getpostman.com/docs/v6/postman/sending_api_requests/requests#cookies
+.. _Header presets: https://www.getpostman.com/docs/v6/postman/sending_api_requests/requests#header-presets
+.. _Body: https://www.getpostman.com/docs/v6/postman/sending_api_requests/requests#request-body
+.. _Authorization: https://www.getpostman.com/docs/v6/postman/sending_api_requests/authorization
+.. _Certificates: https://www.getpostman.com/docs/v6/postman/sending_api_requests/certificates
+.. _SOAP requests: https://www.getpostman.com/docs/v6/postman/sending_api_requests/making_soap_requests
+.. _Scripts: https://www.getpostman.com/docs/v6/postman/scripts/intro_to_scripts
+.. _Environments: https://www.getpostman.com/docs/v6/postman/environments_and_globals/intro_to_environments_and_globals
 
 .. vim: ft=rst tw=72
