@@ -13,7 +13,7 @@ import responses
 from urllib3.response import HTTPResponse
 
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 __all__ = [
     # constants
     'V21_SCHEMA_URL',
