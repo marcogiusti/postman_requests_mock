@@ -38,11 +38,13 @@ Features
 - Folders_
 - Examples_ (actually the core feature this library is built on)
 - `Basic auth`_
+- Variable expansion and scopes_.
 
 .. _Collections: https://www.getpostman.com/docs/v6/postman/collections/sharing_collections#sharing-as-a-file
 .. _Folders: https://www.getpostman.com/docs/v6/postman/collections/managing_collections#adding-folders
 .. _Examples: https://www.getpostman.com/docs/v6/postman/collections/examples
 .. _Basic auth: https://www.getpostman.com/docs/v6/postman/sending_api_requests/authorization#basic-auth
+.. _scopes: https://www.getpostman.com/docs/v6/postman/environments_and_globals/intro_to_environments_and_globals
 
 
 Unsupported or untested features
@@ -57,7 +59,6 @@ Postman support a lot of features, many of which are not yet supported:
 - Certificates_ (not supported)
 - `SOAP requests`_ (not supported)
 - Scripts_ (not supported)
-- Environments_ (not supported)
 
 .. _Collections v2 and v1 data formats: http://blog.getpostman.com/2015/06/05/travelogue-of-postman-collection-format-v2/
 .. _Header presets: https://www.getpostman.com/docs/v6/postman/sending_api_requests/requests#header-presets
@@ -66,7 +67,6 @@ Postman support a lot of features, many of which are not yet supported:
 .. _Certificates: https://www.getpostman.com/docs/v6/postman/sending_api_requests/certificates
 .. _SOAP requests: https://www.getpostman.com/docs/v6/postman/sending_api_requests/making_soap_requests
 .. _Scripts: https://www.getpostman.com/docs/v6/postman/scripts/intro_to_scripts
-.. _Environments: https://www.getpostman.com/docs/v6/postman/environments_and_globals/intro_to_environments_and_globals
 
 Cookies
 -------
