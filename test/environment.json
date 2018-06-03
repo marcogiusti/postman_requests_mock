@@ -1,0 +1,16 @@
+{
+  "id": "5aaa0f44-cd40-4f2f-ada6-4175bccd074f",
+  "name": "Test environment",
+  "values": [
+    {
+      "key": "path",
+      "value": "ip",
+      "description": "",
+      "type": "text",
+      "enabled": false
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2018-05-27T20:33:57.561Z",
+  "_postman_exported_using": "Postman/6.1.2"
+}

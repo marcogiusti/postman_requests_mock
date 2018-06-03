@@ -1,9 +1,10 @@
 import json
 from os.path import dirname, join as joinpath
+import time
 import unittest
 from postman_requests_mock import (
     PostmanCollectionV21 as _PostmanCollectionV21, ValidationError,
-    CaseInsensitivesDict, requests_mock
+    CaseInsensitivesDict, requests_mock, PostmanFormatter, load_scope_from_file
 )
 import requests
 from requests.exceptions import ConnectionError
@@ -11,6 +12,10 @@ from requests.exceptions import ConnectionError
 
 def fixture(name):
     return joinpath(dirname(__file__), name)
+
+
+def load_scope(name):
+    return load_scope_from_file(fixture(name))
 
 
 class PostmanCollectionV21(_PostmanCollectionV21):
@@ -21,16 +26,13 @@ class PostmanCollectionV21(_PostmanCollectionV21):
         _schema = json.load(fp)
 
     @classmethod
-    def from_fixture(cls, name):
-        return cls.from_file(fixture(name))
+    def from_fixture(cls, name, global_scope={}, environment={}):
+        return cls.from_file(fixture(name), global_scope, environment)
 
 
-def build_mock(name):
-    collection = PostmanCollectionV21.from_fixture(name)
-    mock = requests_mock(
-        collection,
-        assert_all_requests_are_fired=False
-    )
+def build_mock(name, global_scope={}, env={}):
+    collection = PostmanCollectionV21.from_fixture(name, global_scope, env)
+    mock = requests_mock(collection, assert_all_requests_are_fired=False)
     return mock
 
 
@@ -219,6 +221,48 @@ class TestRequestMatching(unittest.TestCase):
             response = requests.get('http://httpbin.org/ip#fragment')
         self.assertEqual(response.status_code, 200)
 
+    def test_collection_variables(self):
+        '''
+        Variables in the URL and URL parameters are correctly expanded.
+        '''
+
+        data = {'myparam': 'value'}
+        with build_mock('var_expansion.json'):
+            resp = requests.get('http://httpbin.org:80/anything', data=data)
+            self.assertEqual(resp.status_code, 200)
+
+    def test_header_variable(self):
+        '''
+        Variables in the headers are correctly expanded too.
+        '''
+
+        headers = {'myparam': 'value'}
+        with build_mock('var_expansion.json'):
+            resp = requests.get('http://httpbin.org/headers', headers=headers)
+            self.assertEqual(resp.status_code, 200)
+
+    def test_global_scope(self):
+        '''
+        Use the global scope to expand the variables.
+        '''
+
+        globals = {'host': 'httpbin.org'}
+        with build_mock('var_expansion2.json', globals):
+            resp = requests.get('http://httpbin.org/get')
+            self.assertEqual(resp.status_code, 200)
+
+    def test_environment(self):
+        '''
+        The environment scope take precedence over the global scope.
+        '''
+
+        globals = {'host': 'example.com'}
+        env = {'host': 'httpbin.org'}
+        with build_mock('var_expansion2.json', globals, env):
+            resp = requests.get('http://httpbin.org/get')
+            self.assertEqual(resp.status_code, 200)
+
+
 
 class TestResponses(unittest.TestCase):
 
@@ -252,3 +296,48 @@ class TestMiscellanea(unittest.TestCase):
         with build_mock('string_request.json'):
             resp = requests.get('http://httpbin.org/ip')
             self.assertEqual(resp.json(), {'origin': '1.1.1.1'})
+
+    def test_load_scope(self):
+        self.assertEqual(load_scope('globals.json'), {'host': 'httpbin.org'})
+
+    def test_load_scope_var_disabled(self):
+        self.assertEqual(load_scope('environment.json'), {})
+
+
+class TestFormatter(unittest.TestCase):
+
+    def test_formatter(self):
+        s = 'hello {{who}}'
+        formatter = PostmanFormatter()
+        expected = formatter.format(s, who='world')
+        self.assertEqual(expected, 'hello world')
+
+    def test_trim_spaces(self):
+        s = 'hello {{ who }}'
+        formatter = PostmanFormatter()
+        expected = formatter.format(s, who='world')
+        self.assertEqual(expected, 'hello world')
+
+    def test_no_variables(self):
+        s = 'hello world'
+        formatter = PostmanFormatter()
+        expected = formatter.format(s, who='world')
+        self.assertEqual(expected, 'hello world')
+
+    def test_dynamic_variables(self):
+        formatter = PostmanFormatter()
+        s = '{{$guid}}'
+        self.assertRegex(
+            formatter.format(s),
+            r'[0-9a-h]{8}-([0-9a-h]{4}-){3}[0-9a-h]{12}'
+        )
+        s = '{{$timestamp}}'
+        t0 = time.time()
+        expected = formatter.format(s)
+        t1 = time.time()
+        self.assertTrue(t0 <= float(expected) <= t1)
+        self.assertTrue(0 <= int(formatter.format('{{$randomInt}}')) <= 1000)
+
+    def test_field_not_found(self):
+        s = 'hello {{who}}'
+        self.assertEqual(PostmanFormatter().format(s), s)

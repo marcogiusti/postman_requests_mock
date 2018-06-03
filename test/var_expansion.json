@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "f8707973-638a-4b5e-9816-cb2769061f6e",
+		"name": "Variable expansion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Param expansion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{scheme}}://{{host}}:{{port}}/{{path}}?{{param_key}}={{param_value}}",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "{{param_key}}",
+							"value": "{{param_value}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "5f05ed5c-5fa6-454f-88d5-d3826ec189eb",
+					"name": "Param expansion",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{scheme}}://{{host}}:{{port}}/{{path}}?{{param_key}}={{param_value}}",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{path}}"
+							],
+							"query": [
+								{
+									"key": "{{param_key}}",
+									"value": "{{param_value}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "382",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Jun 2018 14:55:26 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"args\":{\"myparam\":\"value\"},\"data\":\"\",\"files\":{},\"form\":{},\"headers\":{\"Accept\":\"*/*\",\"Accept-Encoding\":\"gzip, deflate\",\"Cache-Control\":\"no-cache\",\"Connection\":\"close\",\"Host\":\"httpbin.org\",\"Postman-Token\":\"9b62cd1e-3778-4086-a94e-89b29a9d3d5a\",\"User-Agent\":\"PostmanRuntime/7.1.5\"},\"json\":null,\"method\":\"GET\",\"origin\":\"1.1.1.1\",\"url\":\"http://httpbin.org/anything?myparam=value\"}\n"
+				}
+			]
+		},
+		{
+			"name": "Header expansion",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "{{param_key}}",
+						"value": "{{param_value}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{scheme}}://{{host}}/headers",
+					"protocol": "{{scheme}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"headers"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "119c55eb-1129-457b-8f1a-1ecb40647aeb",
+					"name": "Header expansion",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{param_key}}",
+								"value": "{{param_value}}",
+								"disabled": false
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{scheme}}://{{host}}/headers",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"headers"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "241",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Jun 2018 15:14:50 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"headers\":{\"Accept\":\"*/*\",\"Accept-Encoding\":\"gzip, deflate\",\"Cache-Control\":\"no-cache\",\"Connection\":\"close\",\"Host\":\"httpbin.org\",\"Myparam\":\"value\",\"Postman-Token\":\"21c3d918-251b-4087-adc8-81e8d20e1f91\",\"User-Agent\":\"PostmanRuntime/7.1.5\"}}\n"
+				}
+			]
+		},
+		{
+			"name": "Global variables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{host2}}/ip",
+					"protocol": "http",
+					"host": [
+						"{{host2}}"
+					],
+					"path": [
+						"ip"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "32cc0e16-1a7c-4c0a-a8a7-50aff1ce9146",
+					"name": "Global variables",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host2}}/ip",
+							"protocol": "http",
+							"host": [
+								"{{host2}}"
+							],
+							"path": [
+								"ip"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Jun 2018 15:52:25 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"origin\":\"1.1.1.1\"}\n"
+				}
+			]
+		},
+		{
+			"name": "Environment variable",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://httpbin.org/{{path}}",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"{{path}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "8dc4cb4d-3e27-4a6c-a1b8-8c8a85a770e2",
+					"name": "Environment variable",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://httpbin.org/{{path}}",
+							"protocol": "http",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"{{path}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true",
+							"name": "Access-Control-Allow-Credentials",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "288",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Jun 2018 15:55:11 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.8.1",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur",
+							"name": "Via",
+							"description": "Informs the client of proxies through which the response was sent."
+						}
+					],
+					"cookie": [],
+					"body": "{\"args\":{},\"headers\":{\"Accept\":\"*/*\",\"Accept-Encoding\":\"gzip, deflate\",\"Cache-Control\":\"no-cache\",\"Connection\":\"close\",\"Host\":\"httpbin.org\",\"Postman-Token\":\"8e5a5d72-8174-49b9-8f92-a68f3ebcf9ed\",\"User-Agent\":\"PostmanRuntime/7.1.5\"},\"origin\":\"1.1.1.1\",\"url\":\"http://httpbin.org/get\"}\n"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "513b498f-0a3e-456c-a47a-d588d8485cff",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a694ee17-f493-4003-91a7-69c6694873a7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bf58419d-a701-4321-be01-5059e219a51b",
+			"key": "scheme",
+			"value": "http",
+			"type": "string"
+		},
+		{
+			"id": "c976b3ba-decb-46b4-ae98-23c0ecf68f71",
+			"key": "host",
+			"value": "httpbin.org",
+			"type": "string"
+		},
+		{
+			"id": "17138d0d-9922-42f2-8e6d-2fc0ee948386",
+			"key": "port",
+			"value": "80",
+			"type": "string"
+		},
+		{
+			"id": "01718d2d-497a-4c0a-aa7f-a0edb95ef365",
+			"key": "path",
+			"value": "anything",
+			"type": "string"
+		},
+		{
+			"id": "48e0884c-c86d-47d7-8065-a109af626e75",
+			"key": "param_key",
+			"value": "myparam",
+			"type": "string"
+		},
+		{
+			"id": "1770ee8e-d01b-4fdc-b68a-e554271f207b",
+			"key": "param_value",
+			"value": "value",
+			"type": "string",
+			"description": ""
+		}
+	]
+}
