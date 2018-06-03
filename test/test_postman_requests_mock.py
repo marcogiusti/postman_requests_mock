@@ -58,6 +58,10 @@ class TestCaseInsensitiveDict(unittest.TestCase):
         idict = CaseInsensitivesDict([('Content-Type', 'application/json')])
         self.assertEqual(list(idict), ['content-type'])
 
+    def test_repr(self):
+        idict = CaseInsensitivesDict([('Content-Type', 'application/json')])
+        self.assertEqual(repr(idict), "{'content-type': 'application/json'}")
+
 
 class TestRequestMatching(unittest.TestCase):
 
@@ -301,6 +305,11 @@ class TestMiscellanea(unittest.TestCase):
         self.assertEqual(load_scope('globals.json'), {'host': 'httpbin.org'})
 
     def test_load_scope_var_disabled(self):
+        '''
+        environment.json define one variable but it is disabled and ence do not
+        load it.
+        '''
+
         self.assertEqual(load_scope('environment.json'), {})
 
 
