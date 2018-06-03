@@ -36,15 +36,15 @@ setup(
     py_modules=['postman_requests_mock'],
     package_dir={'': 'src'},
     install_requires=[
-        'jsonschema',
-        'requests',
         'responses'
     ],
     extras_require={
         'dev': [
             'coverage',
+            'jsonschema',
             'pycodestyle',
             'pyflakes',
+            'requests',
             'tox'
         ]
     },

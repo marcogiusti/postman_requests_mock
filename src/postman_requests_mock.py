@@ -9,19 +9,28 @@ import time
 from urllib.parse import urlparse, urlunparse
 import uuid
 
-import jsonschema
-from jsonschema.exceptions import ValidationError
-import requests
 import responses
 from urllib3.response import HTTPResponse
 
 
 __version__ = '0.0.1'
 __all__ = [
-    'PostmanCollectionV21', 'PostmanResponseV21', 'ValidationError',
-    'requests_mock'
+    # constants
+    'V21_SCHEMA_URL',
+    # High level interface
+    'load_scope', 'load_scope_from_file', 'requests_mock',
+    'PostmanCollectionV21',
+    # low level classes
+    'ItemV21', 'StringRequestV21', 'RequestV21', 'ResponseV21',
+    'PostmanResponseV21',
+    # misc
+    'PostmanFormatter'
 ]
-V21_SCHEMA_URL = 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
+
+
+V21_SCHEMA_URL = (
+    'https://schema.getpostman.com/json/collection/v2.1.0/collection.json'
+)
 
 
 def normalize_lowercase(key):
@@ -128,23 +137,17 @@ class PostmanCollectionV21:
 
     @classmethod
     def from_file(cls, filename, global_scope={}, environment={},
-                  validate=True):
+                  validate=None):
         with open(filename, encoding='utf-8') as fp:
             return cls(json.load(fp), global_scope, environment, validate)
 
     def __init__(self, collection, global_scope={}, environment={},
-                 validate=True):
-        if validate:
-            jsonschema.validate(collection, self._get_schema())
+                 validate=None):
+        if validate is not None:
+            validate(collection)
         self._collection = collection
         self._global = global_scope
         self._environment = environment
-
-    @classmethod
-    def _get_schema(cls):
-        if cls._schema is None:
-            cls._schema = requests.get(V21_SCHEMA_URL).json()
-        return cls._schema
 
     def _variables(self):
         return load_scope(self._collection.get('variable', []))

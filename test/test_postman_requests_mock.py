@@ -2,12 +2,15 @@ import json
 from os.path import dirname, join as joinpath
 import time
 import unittest
-from postman_requests_mock import (
-    PostmanCollectionV21 as _PostmanCollectionV21, ValidationError,
-    CaseInsensitivesDict, requests_mock, PostmanFormatter, load_scope_from_file
-)
+
+import jsonschema
+from jsonschema.exceptions import ValidationError
 import requests
 from requests.exceptions import ConnectionError
+from postman_requests_mock import (
+    PostmanCollectionV21 as _PostmanCollectionV21, CaseInsensitivesDict,
+    requests_mock, PostmanFormatter, load_scope_from_file
+)
 
 
 def fixture(name):
@@ -18,12 +21,17 @@ def load_scope(name):
     return load_scope_from_file(fixture(name))
 
 
-class PostmanCollectionV21(_PostmanCollectionV21):
+def schema_validate(schema):
+    def wrapped(instance):
+        jsonschema.validate(instance, schema)
+    return wrapped
 
-    # load the cached version of the schema to speed up the tests and
-    # avoid network communication
-    with open(fixture('collection.json'), encoding='utf8') as fp:
-        _schema = json.load(fp)
+
+with open(fixture('collection.json'), encoding='utf8') as fp:
+    validate_collection = schema_validate(json.load(fp))
+
+
+class PostmanCollectionV21(_PostmanCollectionV21):
 
     @classmethod
     def from_fixture(cls, name, global_scope={}, environment={}):
@@ -66,7 +74,10 @@ class TestCaseInsensitiveDict(unittest.TestCase):
 class TestRequestMatching(unittest.TestCase):
 
     def test_validate(self):
-        self.assertRaises(ValidationError, PostmanCollectionV21, {})
+        self.assertRaises(
+            ValidationError,
+            PostmanCollectionV21, {}, validate=validate_collection
+        )
 
     def test_basic_request(self):
         with build_mock('basic.json'):
@@ -265,7 +276,6 @@ class TestRequestMatching(unittest.TestCase):
         with build_mock('var_expansion2.json', globals, env):
             resp = requests.get('http://httpbin.org/get')
             self.assertEqual(resp.status_code, 200)
-
 
 
 class TestResponses(unittest.TestCase):

@@ -38,13 +38,14 @@ Features
 - Folders_
 - Examples_ (actually the core feature this library is built on)
 - `Basic auth`_
-- Variable expansion and scopes_.
+- `Variable expansion`_ and scopes_.
 
 .. _Collections: https://www.getpostman.com/docs/v6/postman/collections/sharing_collections#sharing-as-a-file
 .. _Folders: https://www.getpostman.com/docs/v6/postman/collections/managing_collections#adding-folders
 .. _Examples: https://www.getpostman.com/docs/v6/postman/collections/examples
 .. _Basic auth: https://www.getpostman.com/docs/v6/postman/sending_api_requests/authorization#basic-auth
 .. _scopes: https://www.getpostman.com/docs/v6/postman/environments_and_globals/intro_to_environments_and_globals
+.. _Variable expansion: https://www.getpostman.com/docs/v6/postman/environments_and_globals/variables
 
 
 Unsupported or untested features
